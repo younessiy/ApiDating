@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
@@ -6,7 +7,7 @@ using API.Helpers;
 
 namespace API.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IDisposable
     {
         void Update(AppUser user);
         Task<bool> SaveAllAsync();

@@ -22,6 +22,8 @@ namespace API.Data
             _context = context;
         }
 
+
+
         public async Task<MemberDto> GetMemberAsync(string username)
         {
             return await _context.Users
@@ -46,7 +48,7 @@ namespace API.Data
             };
             return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(_mapper.ConfigurationProvider).AsNoTracking()
                 , userParams.PageNumber, userParams.PageSize);
-                
+
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
@@ -76,6 +78,11 @@ namespace API.Data
         public void Update(AppUser user)
         {
             _context.Entry(user).State = EntityState.Modified;
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }
